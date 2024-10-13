@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import ButtonComponents from "./ButtonComponents";
 
 function App() {
+  const [count, setCount] = useState(1);
+  const decrement = () => setCount(count - 1);
+  const increment = () => setCount(count + 1);
+  const reset = () => setCount(0);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <div class="container">
+        <h1>Demo App - Counter</h1>
+        <span
+          style={{ color: count > 0 ? "green" : count < 0 ? "red" : "black" }}
+          id="value"
         >
-          Learn React
-        </a>
-      </header>
+          {count}
+        </span>
+        <div className="btn-group">
+          <button onClick={decrement} className="btn btn-decrease">
+            DECREASE
+          </button>
+          <button onClick={reset} className="btn btn-reset">
+            RESET
+          </button>
+          <button onClick={increment} className="btn btn-increase">
+            INCREASE
+          </button>
+          <ButtonComponents
+            title="increase"
+            onClick={increment}
+            className="btn-increase"
+          />
+          <ButtonComponents title="decrease" onClick={decrement} />
+          <ButtonComponents title="reset" onClick={reset} />
+        </div>
+      </div>
     </div>
   );
 }
